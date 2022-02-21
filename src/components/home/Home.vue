@@ -3,41 +3,18 @@
     <!-- 头部 -->
     <el-header class="header">
       <div>
-        <img
-          src="~assets/logo.png"
-          alt=""
-        >
+        <img src="~assets/logo.png" alt="">
         <span>后台管理系统</span>
       </div>
-      <el-button
-        type="info"
-        @click="logout"
-      >退出</el-button>
+      <el-button type="info" @click="logout">退出</el-button>
     </el-header>
     <el-container>
       <!-- 左侧 -->
-      <el-aside
-        :width="isCollapse ? '61px' : '200px'"
-        class="aside"
-      >
+      <el-aside :width="isCollapse ? '61px' : '200px'" class="aside">
         <div class="togglebutton" @click="toggleCollpase">{{qie}}</div>
-        <el-menu
-          :default-active="activePath"
-          class="el-menu-vertical-demo"
-          background-color="#545c64"
-          text-color="#fff"
-          active-text-color="#ffd04b"
-          :collapse="isCollapse"
-          :unique-opened='true'
-          :collapse-transition='false'
-          :router="true"
-        >
+        <el-menu :default-active="activePath" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" :collapse="isCollapse" :unique-opened='true' :collapse-transition='false' :router="true">
           <!-- 一级菜单 -->
-          <el-submenu
-            :index="index+''"
-            v-for="(item,index) in menuList"
-            :key="item.id"
-          >
+          <el-submenu :index="index+''" v-for="(item,index) in menuList" :key="item.id">
             <template slot="title">
               <!-- 图标 -->
               <i :class="iconsObj[item.id]"></i>
@@ -45,12 +22,7 @@
               <span>{{item.authName}}</span>
             </template>
             <!-- 二级菜单 -->
-            <el-menu-item
-              :index="subItem.path"
-              v-for="subItem in item.children"
-              :key="subItem.id"
-              @click="saveActivePath(subItem.path)"
-            >
+            <el-menu-item :index="subItem.path" v-for="subItem in item.children" :key="subItem.id" @click="saveActivePath(subItem.path)">
               <i class="el-icon-menu"></i>
               <span>{{subItem.authName}}</span>
             </el-menu-item>
@@ -70,7 +42,7 @@ export default {
   name: "Home",
   data() {
     return {
-      qie:'|||',
+      qie: '|||',
       menuList: [],
       iconsObj: {
         // 一级菜单的icon图标
@@ -87,7 +59,7 @@ export default {
   },
   created() {
     this.getMenuList();
-    this.activePath=window.sessionStorage.getItem("activePath")
+    this.activePath = window.sessionStorage.getItem("activePath")
   },
   methods: {
     logout() {
@@ -99,17 +71,17 @@ export default {
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
       this.$message.success(res.meta.msg);
       this.menuList = res.data;
-      // console.log(res);
+      console.log(res);
     },
-    toggleCollpase(){
-      this.isCollapse =!this.isCollapse
-      if(this.isCollapse) return this.qie='|||'
-      this.qie='三'
+    toggleCollpase() {
+      this.isCollapse = !this.isCollapse
+      if (this.isCollapse) return this.qie = '|||'
+      this.qie = '三'
     },
-    saveActivePath(activePath){
+    saveActivePath(activePath) {
       // console.log('111');
-      window.sessionStorage.setItem('activePath',activePath)
-      this.activePath=activePath
+      window.sessionStorage.setItem('activePath', activePath)
+      this.activePath = activePath
     }
   },
 };
@@ -142,7 +114,7 @@ export default {
 }
 .aside {
   background-color: rgb(255, 67, 67);
-  .togglebutton{
+  .togglebutton {
     background-color: #4a5064;
     text-align: center;
     color: #fff;
@@ -151,7 +123,7 @@ export default {
     cursor: pointer;
     letter-spacing: 0.2em;
   }
-  .el-menu{
+  .el-menu {
     border-right: 0;
   }
 }
