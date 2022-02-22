@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import ZkTable from 'vue-table-with-tree-grid'
 import './network/axios'
 import './plugins/element.js'
 // 导入全局样式表
@@ -9,7 +10,7 @@ import 'assets/fonts/iconfont.css'
 
 
 Vue.config.productionTip = false
-
+Vue.component('tree-table', ZkTable)
 new Vue({
   router,
   render: h => h(App)
