@@ -96,3 +96,22 @@ export const rolesFormRulesMixin= {
     }
   }
 }
+
+export const paramsFormRulesMixin = {
+  data() {
+    return{
+      addFormRules: {
+        attr_name: [
+          { required: true, message: '请输入添加的分类', trigger: 'blur' },
+          { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur' }
+        ]
+      },
+      editFormRules: {
+        attr_name: [
+          { required: true, message: '请输入修改的信息', trigger: 'blur' },
+          { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur' }
+        ]
+      }
+    }
+  }
+}
