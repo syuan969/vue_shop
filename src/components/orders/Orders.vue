@@ -27,7 +27,7 @@
             </template>
           </el-table-column>
           <el-table-column label="操作" width="150px">
-            <template v-slot="scope">
+            <template>
               <el-tooltip class="item" effect="dark" content="修改地址" placement="top">
                 <el-button type="primary" icon="el-icon-edit" size="mini" @click="showBox"></el-button>
               </el-tooltip>
