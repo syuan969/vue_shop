@@ -115,3 +115,52 @@ export const paramsFormRulesMixin = {
     }
   }
 }
+export const GoodsListFormRulesMixin = {
+  data() {
+    return {
+      editListRules: {
+        goods_name: [
+          { required: true, message: '请输入修改的名称', trigger: 'blur' },
+          { min: 2, max: 150, message: '长度在 2 到 150 个字符', trigger: 'blur' }
+        ],
+        goods_price: [
+          { required: true, type: 'number',message: '请输入修改的价格', trigger: 'blur' },
+          { min: 1, type: 'number',max: 999999, message: '价格在 1 ~ 999999之间', trigger: 'blur' }
+        ],
+        goods_number: [
+          { required: true, type: 'number',message: '请输入修改的数量' },
+          { min: 1, type: 'number', max: 9999, message: '长度在 1 到 9999 个字符' }
+        ],
+        goods_weight: [
+          { required: true, type: 'number', message: '请输入修改的重量', trigger: 'blur' },
+          { min: 1, type: 'number', max: 9999, message: '长度在 1 到 9999 个字符', trigger: 'blur' }
+        ],
+      }
+    }
+  }
+}
+
+export const goodsAddFormRulesMixin = {
+  data() {
+    return {
+      // 添加商品验证规则
+      addFormRules: {
+        goods_name: [
+          { required: true, message: '请输入商品的名称', trigger: 'blur' },
+          {
+            min: 2,
+            max: 30,
+            message: '请输入 2 ~ 30 范围的字符',
+            trigger: 'blur'
+          }
+        ],
+        goods_price: [
+          { required: true, message: '请输入商品的价格', trigger: 'blur' }
+        ],
+        goods_weight: [{ required: true, message: '请输入商品的重量', trigger: 'blur' }],
+        goods_number: [{ required: true, message: '请输入商品的数量', trigger: 'blur' }],
+        goods_cat: [{ required: true, message: '请选择商品分类', trigger: 'blur' }]
+      }
+    }
+  }
+}

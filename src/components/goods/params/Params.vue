@@ -57,8 +57,8 @@
             <el-table-column label="参数名称" prop="attr_name"></el-table-column>
             <el-table-column label="操作">
               <template v-slot="scope">
-                <el-button type="primary" size="mini" @click="showEditDialog(scope.row.attr_id)">编辑</el-button>
-                <el-button type="danger" size="mini" @click="removeParams(scope.row.attr_id)">删除</el-button>
+                <el-button type="primary" size="mini" icon="el-icon-edit" @click="showEditDialog(scope.row.attr_id)">编辑</el-button>
+                <el-button type="danger" size="mini" @click="removeParams(scope.row.attr_id)" icon="el-icon-delete">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
