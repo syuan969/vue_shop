@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Vue from 'vue'
 import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
+// import 'nprogress/nprogress.css'
 axios.defaults.baseURL ="https://lianghj.top:8888/api/private/v1/";
 axios.interceptors.request.use(config=>{
   // console.log(config);
