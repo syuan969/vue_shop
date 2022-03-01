@@ -26,9 +26,9 @@
         <li>
           <h1>项目源码存放</h1>
         </li>
-        <li><a href="https://github.com/syuan969">Github</a>
+        <li><a href="https://github.com/syuan969" target="_blank">Github</a>
          <span> 《《----点击可跳转,国外----》》</span></li>
-        <li><a href="https://gitee.com/sanyuan969">Gitee</a>
+        <li><a href="https://gitee.com/sanyuan969" target="_blank">Gitee</a>
         <span> 《《----点击可跳转,国内----》》</span></li>
       </ul>
     </div>
