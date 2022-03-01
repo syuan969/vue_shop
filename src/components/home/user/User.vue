@@ -153,7 +153,7 @@ export default {
       // console.log(res);
       if (res.meta.status !== 200)
         return this.$message.error("获取用户列表失败");
-      this.$message.success("获取用户列表成功!");
+      // this.$message.success("获取用户列表成功!");
       this.userList = res.data.users;
       this.total = res.data.total;
       // console.log(this.userList);
@@ -252,7 +252,7 @@ export default {
         if (zxc.meta.status !== 200) {
           return this.$message.error('该用户删除失败')
         }
-        this.$message.success('该用户已经删除')
+        this.$message.success('删除成功')
         this.getUserList()
       })
     },

@@ -3,7 +3,7 @@
     <!-- 头部 -->
     <el-header class="header">
       <div>
-        <img src="~assets/logo.png" alt="">
+        <img src="~assets/logo1.jpg" alt="">
         <span>后台管理系统</span>
       </div>
       <el-button type="info" @click="logout">退出</el-button>
@@ -69,7 +69,7 @@ export default {
     async getMenuList() {
       const { data: res } = await this.$http.get("/menus");
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
-      this.$message.success(res.meta.msg);
+      // this.$message.success(res.meta.msg);
       this.menuList = res.data;
       // console.log(res);
     },
@@ -92,7 +92,7 @@ export default {
   height: 100%;
 }
 .header {
-  background-color: #ccc;
+  background-color: rgb(62, 63, 65);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -103,9 +103,9 @@ export default {
     display: flex;
     align-items: center;
     img {
-      height: 100%;
-      // border-radius: 50%;
-      // border: 2px solid #fff;
+      height: 80%;
+      border-radius: 50%;
+      border: 2px solid #fff;
     }
     span {
       margin-left: 15px;
@@ -113,7 +113,7 @@ export default {
   }
 }
 .aside {
-  background-color: rgb(255, 67, 67);
+  background-color: #545c64;
   .togglebutton {
     background-color: #4a5064;
     text-align: center;

@@ -1,42 +1,25 @@
 <template>
   <div class="login">
+    <div class="bgc"></div>
     <div class="login-box">
       <!--头像区域-->
       <div class="avatar_box">
-        <img
-          src="~assets/logo.png"
-          alt=""
-        >
+        <img src="~assets/logo1.jpg" alt="">
       </div>
       <!-- 表单提交 -->
-      <el-form
-        ref="loginFormRef"
-        :rules="loginFormRules"
-        :model="loginForm"
-        label-width="0px"
-        class="login-form"
-      >
+      <el-form ref="loginFormRef" :rules="loginFormRules" :model="loginForm" label-width="0px" class="login-form">
         <!-- 用户名 -->
         <el-form-item prop="username">
           <el-input v-model="loginForm.username" prefix-icon="el-icon-user"></el-input>
         </el-form-item>
         <!-- 密码 -->
         <el-form-item prop="password">
-          <el-input v-model="loginForm.password" prefix-icon="el-icon-lock"
-          show-password></el-input>
+          <el-input v-model="loginForm.password" prefix-icon="el-icon-lock" show-password></el-input>
         </el-form-item>
         <!-- 按钮 -->
-        <el-form-item>
-          <el-button
-            @click="login"
-            type="primary"
-            round
-          >登录</el-button>
-          <el-button
-            @click="resetLoginForm"
-            type="info"
-            round
-          >重置</el-button>
+        <el-form-item class="center">
+          <el-button @click="login" type="primary" round :loading="isLoad">登录</el-button>
+          <el-button @click="resetLoginForm" type="info" round>重置</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -46,13 +29,14 @@
 <script>
 export default {
   name: "Login",
-  data(){
-    return{
-      loginForm:{
-        username:'admin',
-        password:'123456'
+  data() {
+    return {
+      isLoad: false,
+      loginForm: {
+        username: 'admin',
+        password: '123456'
       },
-      loginFormRules:{
+      loginFormRules: {
         // 验证用户名是否合法
         username: [
           { required: true, message: '请输入登录名称', trigger: 'blur' },
@@ -66,22 +50,23 @@ export default {
       }
     }
   },
-  methods:{
+  methods: {
     // 登录
-    login(){
-      this.$refs.loginFormRef.validate(async(valid)=>{
-        if(!valid) return;
-        const {data:res}=await this.$http.post('login',this.loginForm);
+    login() {
+      this.isLoad = true
+      this.$refs.loginFormRef.validate(async (valid) => {
+        if (!valid) return;
+        const { data: res } = await this.$http.post('login', this.loginForm);
         // console.log(res);
-        if(res.meta.status !=200) return this.$message.error('登录失败');
+        if (res.meta.status != 200) return this.$message.error('登录失败');
         this.$message.success('登录成功')
         // 保存登录成功后的token
-        window.sessionStorage.setItem("token",res.data.token)
+        window.sessionStorage.setItem("token", res.data.token)
         this.$router.push('/home')
       })
     },
     // 重置表单功能
-    resetLoginForm(){
+    resetLoginForm() {
       // console.log('1');
       this.$refs.loginFormRef.resetFields()
     }
@@ -90,9 +75,30 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.bgc {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url(~@/assets/bgc1.jpg) no-repeat;
+  background-size: 100%;
+  filter: blur(10px);
+}
+.bgc:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  background-color:rgba(255, 255, 255, 0.3);
+  
+}
 .login {
   height: 100%;
-  background-color: rgb(142, 149, 212);
+  background: url(~@/assets/bgc1.jpg) no-repeat;
+  background-size: cover;
+  // filter: blur(10px);
   .login-box {
     position: absolute;
     top: 50%;
@@ -102,6 +108,7 @@ export default {
     height: 300px;
     background-color: #fff;
     border-radius: 10px;
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.3);
     .avatar_box {
       position: absolute;
       left: 50%;
@@ -126,6 +133,12 @@ export default {
       width: 100%;
       padding: 0 20px;
       bottom: 0;
+      .center{
+        text-align: center;
+      }
+      .el-button{
+        margin-right: 20px;
+      }
     }
   }
 }
