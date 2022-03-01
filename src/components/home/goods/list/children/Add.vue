@@ -1,6 +1,11 @@
 <template>
   <div class="add">
-    <Breadcrumb name1="商品管理" name2="添加商品" />
+    <!-- <Breadcrumb name1="商品管理" name2="添加商品" /> -->
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/goods' }">商品管理</el-breadcrumb-item>
+      <el-breadcrumb-item>添加商品</el-breadcrumb-item>
+    </el-breadcrumb>
     <!-- 卡片 -->
     <el-card>
       <!-- 提示区 -->
@@ -74,13 +79,10 @@
 
 <script>
 import { goodsAddFormRulesMixin } from '@/common/mixin.js'
-import Breadcrumb from 'components/content/breadcrumb/Breadcrumb'
+// import Breadcrumb from 'components/content/breadcrumb/Breadcrumb'
 export default {
   name: "Add",
   mixins: [goodsAddFormRulesMixin],
-  components: {
-    Breadcrumb
-  },
   data() {
     return {
       activeIndex: '0',

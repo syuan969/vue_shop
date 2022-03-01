@@ -380,4 +380,7 @@ export default {
   padding-top: 0;
   padding-bottom: 0;
 }
+.el-table {
+  margin-top: 10px;
+}
 </style>

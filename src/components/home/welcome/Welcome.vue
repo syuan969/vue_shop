@@ -47,6 +47,7 @@ export default {
   background-color: #fff;
   color: skyblue;
   padding: 20px 50px;
+  box-shadow: 5px 5px 20px #ccc;
   h2 {
     text-align: center;
   }
