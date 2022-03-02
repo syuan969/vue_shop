@@ -10,11 +10,11 @@
       <el-form ref="loginFormRef" :rules="loginFormRules" :model="loginForm" label-width="0px" class="login-form">
         <!-- 用户名 -->
         <el-form-item prop="username">
-          <el-input v-model="loginForm.username" prefix-icon="el-icon-user"></el-input>
+          <el-input v-model="loginForm.username" prefix-icon="el-icon-user" @keyup.enter.native="login" placeholder="请输入用户号"></el-input>
         </el-form-item>
         <!-- 密码 -->
         <el-form-item prop="password">
-          <el-input v-model="loginForm.password" prefix-icon="el-icon-lock" show-password></el-input>
+          <el-input v-model="loginForm.password" prefix-icon="el-icon-lock" show-password @keyup.enter.native="login" placeholder="请输入密码"></el-input>
         </el-form-item>
         <!-- 按钮 -->
         <el-form-item class="center">
@@ -33,8 +33,8 @@ export default {
     return {
       isLoad: false,
       loginForm: {
-        username: 'admin',
-        password: '123456'
+        username: '',
+        password: ''
       },
       loginFormRules: {
         // 验证用户名是否合法
@@ -55,10 +55,14 @@ export default {
     login() {
       this.isLoad = true
       this.$refs.loginFormRef.validate(async (valid) => {
-        if (!valid) return;
+        if (!valid) return this.isLoad=false;
         const { data: res } = await this.$http.post('login', this.loginForm);
         // console.log(res);
-        if (res.meta.status != 200) return this.$message.error('登录失败');
+        if (res.meta.status != 200) {
+          this.isLoad=false
+          this.$message.error('登录失败');
+          return
+        }
         this.$message.success('登录成功')
         // 保存登录成功后的token
         window.sessionStorage.setItem("token", res.data.token)
